@@ -29,7 +29,7 @@ Siga os passos abaixo:
 * Efetue a cópia do projeto através do comando:
 
 ```
-git clone https://github.com/mr-mateus/cadastro-de-items
+git clone https://github.com/mr-mateus/cadastro-de-itens
 ```
 * Acesse o diretório do projeto copiado e instale as dependências através da seguinte comando:
 ```
