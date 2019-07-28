@@ -1,0 +1,29 @@
+.page-header {
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.page-header h3 {
+    display: inline;
+}
+
+.header-acoes {
+    float: right;
+}
+
+.header-acoes button{
+    margin-left: 8px;
+}
+
+.mensagens {
+    margin-top: 8px;
+}
+
+.input-group {
+    margin-bottom: 8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+}

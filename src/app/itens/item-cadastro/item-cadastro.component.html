@@ -1,0 +1,99 @@
+<p-breadcrumb [model]="breadcrumb" [home]="homePage"></p-breadcrumb>
+<div class="page-header">
+    <h3>Cadastre um item</h3>
+    <div class="header-acoes">
+        <button pButton name="botaoCancelar" type="button" label="Cancelar" class="ui-button-secondary"
+            (click)="cancelar()"></button>
+        <button pButton name="botaoSalvar" type="button" label="Salvar" (click)="salvar()"></button>
+    </div>
+</div>
+
+<div>
+    <form [formGroup]="itemForm">
+        <div class="input-group">
+
+            <label for="nome">Nome: </label>
+            <input id="nome" type="text" size="50" maxlength="50" pInputText formControlName="nome">
+            <div class="mensagens">
+                <p-message name="messageNomeObrigatorio" severity="error" text="Nome é obrigatório"
+                    *ngIf="itemForm.controls.nome.invalid && itemForm.controls.nome.dirty"></p-message>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="tiposUnidadeDeMedida">Unidade de Medida: </label>
+            <p-selectButton name="tiposUnidadeDeMedida" [options]="tiposUnidadeDeMedida"
+                formControlName="tipoUnidadeDeMedida" (onChange)="mudaUnidadeDeMedida()"></p-selectButton>
+            <div class="mensagens">
+                <p-message name="messageTipoUnidadeDeMedidaObrigatorio" severity="error"
+                    text="Unidade de medida é obrigatório"
+                    *ngIf="itemForm.controls.tipoUnidadeDeMedida.invalid && itemForm.controls.tipoUnidadeDeMedida.dirty">
+                </p-message>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="unidadeDeMedida">Quantidade: </label>
+            <div class="ui-inputgroup">
+                <input name="unidadeDeMedida" type="text" pInputText currencyMask [options]="unidadeDeMedidaFormat"
+                    formControlName="unidadeDeMedida">
+                <span name="tpLt" *ngIf="itemForm.controls.tipoUnidadeDeMedida.value === 1"
+                    class="ui-inputgroup-addon">lt</span>
+                <span name="tpKg" *ngIf="itemForm.controls.tipoUnidadeDeMedida.value === 2"
+                    class="ui-inputgroup-addon">kg</span>
+                <span name="tpUn" *ngIf="itemForm.controls.tipoUnidadeDeMedida.value === 3"
+                    class="ui-inputgroup-addon">un</span>
+            </div>
+            <div class="mensagens">
+                <p-message name="messageUnidadeDeMedidaObrigatorio" severity="error"
+                    text="Quantidade é obrigatório"
+                    *ngIf="itemForm.controls.unidadeDeMedida.invalid && itemForm.controls.unidadeDeMedida.dirty">
+                </p-message>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="preco">Preço: </label>
+            <input name="preco" type="text" pInputText placeholder="Preço" formControlName="preco" currencyMask
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2, nullable: true }">
+            <div class="mensagens">
+                <p-message name="messagePrecoObrigatorio" severity="error" text="Preço é obrigatório"
+                    *ngIf="itemForm.controls.preco.invalid && itemForm.controls.preco.dirty"></p-message>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <p-checkbox label="Item perecível" formControlName="perecivel" binary="true"></p-checkbox>
+        </div>
+        <div class="input-group">
+
+            <label for="datadeValidade">Data de Validade:</label>
+            <p-calendar name="datadeValidade" formControlName="dataDeValidade" [locale]="pt" dateFormat="dd/mm/yy">
+            </p-calendar>
+            <div class="mensagens">
+                <p-message name="messageDataDeValidadeObrigatorio" severity="error"
+                    text="Data de validade é obrigatório quando item é perecível" *ngIf="
+                    itemForm.controls.perecivel.value && 
+                    itemForm.controls.dataDeValidade.invalid && 
+                    itemForm.controls.dataDeValidade.dirty"></p-message>
+                <p-message name="messageDataDeValidadeVencida" severity="warn"
+                    text="Item está com a data de validade vencida" *ngIf="validadeEstaVencida()"></p-message>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="dataDeFabricacao">Data de Fabricação: </label>
+            <p-calendar name="dataDeFabricacao" formControlName="dataDeFabricacao" [locale]="pt" dateFormat="dd/mm/yy">
+            </p-calendar>
+            <div class="mensagens">
+                <p-message name="messageDataDeFabricacaoMaiorQueDataDeValidade" severity="error"
+                    text="Data de fabricação não pode ser maior que a data e validade" *ngIf="                
+                    itemForm.controls.dataDeFabricacao.errors &&
+                    itemForm.controls.dataDeFabricacao.errors.dataDeFabricacaoMaiorQueDataDeValidade"></p-message>
+                <p-message name="messageDataDeFabricacaoObrigatorio" severity="error"
+                    text="Data de validade é obrigatório" *ngIf="                
+                    itemForm.controls.dataDeFabricacao.dirty &&
+                    itemForm.controls.dataDeFabricacao.errors &&
+                    itemForm.controls.dataDeFabricacao.errors.required"></p-message>
+            </div>
+        </div>
+    </form>
+</div>

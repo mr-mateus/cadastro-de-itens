@@ -1,0 +1,15 @@
+<div class="side-bar">
+    <div class="logo" >
+        <a href="/">
+            <img src="/assets/images/senior-logo.png" alt="logo da Senior">
+        </a>
+    </div>
+    <ul class="menu-itens">
+        <li *ngFor="let menu of menuItens">
+            <a [routerLink]="menu.link">
+                <span>{{menu.label}}
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>

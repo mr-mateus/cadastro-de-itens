@@ -1,0 +1,57 @@
+.page-header {
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.page-header h3 {
+  display: inline;
+}
+
+.header-acoes {
+  float: right;
+}
+
+.header-acoes button{
+  margin-left: 8px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    /* width: 120px; */
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 5px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -14px;
+    left: -61px;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .conteudo:hover .tooltip .tooltiptext {
+    visibility: visible;
+  }
+
+  .dot-if-text-too-long {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+
+  .acoes-da-tabela button{
+    margin-left: 4px;
+  }
