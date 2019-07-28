@@ -544,7 +544,7 @@ describe('ItemCadastroComponent', () => {
       expect(component.itemForm.controls.dataDeFabricacao.errors).toBeTruthy();
     }));
 
-    it('deve informar que a data de fabricação não pode ser menor que a data de validade', fakeAsync(() => {
+    fit('deve informar que a data de fabricação não pode ser menor que a data de validade', fakeAsync(() => {
       fixture.detectChanges();
       flush();
       const today = new Date();

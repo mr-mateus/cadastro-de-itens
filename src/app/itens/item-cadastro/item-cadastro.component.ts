@@ -180,7 +180,7 @@ export class ItemCadastroComponent implements OnInit{
 
 function dataDeFabricacaoMaiorQueDataDeValidadeValidator(fg: FormGroup): { [key: string]: boolean } | null {
   const dataDeValidade = new Date(fg.get('dataDeValidade').value);
-  if (dataDeValidade) {
+  if (!fg.get('dataDeValidade').value) {
     return null;
   } else {
     dataDeValidade.setHours(0, 0, 0, 0);
