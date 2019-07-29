@@ -47,7 +47,7 @@ Acesse a url `http://localhost:4200`
 Para rodar os testes unitários utilize o comando abaixo
 
 ```
-npm run test
+ng test --code-coverage
 ```
 
 ### Padrão do estilo do código
